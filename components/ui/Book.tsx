@@ -1,9 +1,16 @@
 "use client";
 
-export default function Book() {
+interface BookProps {
+  title?: string;
+  className?: string;
+}
+
+export default function Book({ title = "100xSchool Combined<br />Bootcamp", className = "" }: BookProps) {
+  const lines = title.split('\n');
+  
   return (
     <div
-      className="h-93.75 w-75 relative rounded-[12.5px] bg-linear-to-r from-[#D9D9D9] to-[#D6D7D6] overflow-hidden"
+      className={`h-93.75 w-75 relative rounded-[12.5px] bg-linear-to-r from-[#D9D9D9] to-[#D6D7D6] overflow-hidden ${className} shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] `}
       style={{ boxShadow: "-18px 18px 40px rgba(0,0,0,0.15)" }}
     >
       <div className="h-full w-10.75 bg-[#262626] rounded-l-[12.5px] flex justify-center">
@@ -24,11 +31,12 @@ export default function Book() {
         />
       </svg>
 
-      <h1 className="absolute left-1/2 -translate-x-1/2 top-[34%] z-10 font-semibold text-[20px] text-left whitespace-nowrap pl-3">
-        100xSchool Combined <br /> Bootcamp
-      </h1>
+      <h1 
+        className="absolute left-12 top-[34%] z-10 font-semibold text-[20px] text-left leading-tight max-w-[250px]"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
 
-      <div className="absolute right-3 bottom-3 flex items-center gap-1">
+      <div className="absolute right-3 bottom-3 flex items-center">
         <span className="text-black text-[24px] font-bold">100</span>
         <span className="text-[#0EA5E9] text-[24px] font-bold">x</span>
         <span className="text-black text-[24px] font-bold">Devs</span>

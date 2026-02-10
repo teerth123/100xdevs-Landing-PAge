@@ -122,5 +122,56 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  html {
+    overflow-x: hidden;
+  }
+}
+html {
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+@layer base {
+  body {
+    background-image:
+      linear-gradient(
+        to right,
+        transparent calc(50% - 40rem),
+        hsl(0 0% 100% / 0.08) calc(50% - 40rem),
+        hsl(0 0% 100% / 0.08) calc(50% - 40rem + 1px),
+        transparent calc(50% - 40rem + 1px)
+      ),
+      linear-gradient(
+        to right,
+        transparent calc(50% + 40rem),
+        hsl(0 0% 100% / 0.08) calc(50% + 40rem),
+        hsl(0 0% 100% / 0.08) calc(50% + 40rem + 1px),
+        transparent calc(50% + 40rem + 1px)
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+  }
+  
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: hsl(0 0% 0% / 0.1);
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  body::before {
+    left: calc(50% - 40rem);
+  }
+  
+  body::after {
+    right: calc(50% - 40rem);
   }
 }
