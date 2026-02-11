@@ -1,3 +1,6 @@
+"use client";
+import { Button } from "../button";
+import Image from "next/image";
 export default function Benchmark() {
   return (
     <>
@@ -154,9 +157,108 @@ export default function Benchmark() {
             <div className="border border-[#D9D9D9] flex flex-col justify-center items-center w-full h-full rounded-[10px] p-4"></div>
             <div className="border border-[#D9D9D9] flex flex-col justify-center items-center w-full h-full rounded-[10px]"></div>
           </div>
-
-          <h1 className="font-bold text-[40px] px-8 pt-10">100xdevs Podcast</h1>
           
+          
+          <div className="w-[90%]] mx-2 h-116.25 border border-[#D9D9D9] rounded-[10px] my-10 flex justify-around items-center">
+            <div className="w-[50%] h-full flex justify-evenly items-start flex-col px-5">
+                <h1 className="font-bold text-[40px] ">100xdevs Podcast</h1>
+              <div className="flex justify-evenly items-center h-fit w-full gap-2">
+                <Labels
+                  className="text-[#A872FF] bg-[#F7F2FB]"
+                  text="Startups"
+                />
+                <Labels
+                  className="text-[#0AFF7C] bg-[#F1F6F2]"
+                  text="Careers"
+                />
+                <Labels
+                  className="text-[#FF7274] bg-[#FBF2F2]"
+                  text="Engineering"
+                />
+                <Labels
+                  className="text-[#2DBCFF] bg-[#F2F5FB]"
+                  text="Founders"
+                />
+                <Labels className="text-[#A872FF] bg-[#F7F2FB]" text="Growth" />
+              </div>
+              <h1 className="text-[24px] font-medium">
+                Unfiltered discussions on engineering, startups, <br />
+                and career growth with industry experts and <br />
+                successful developers.
+              </h1>
+              <Button className="bg-black w-fit p-7 rounded-[10px]">
+                See YouTube Channel →
+              </Button>
+            </div>
+
+            <div className="w-[50%] h-full flex justify-center items-center relative">
+              <YT
+                youtubeLink="https://youtu.be/RCGP4gyRvNc?si=Pjze5qX0W0Ah0i4V"
+                title="Building Scalable Applications with Next.js"
+                className="absolute z-0 top-12 left-20 transform-[rotateX(14deg)_rotateZ(-3deg)]"
+              />
+              <YT
+                youtubeLink="https://youtu.be/dRXq81Om2a4"
+                title="Career Growth in Tech: From Junior to Senior Developer"
+                className="absolute z-10 top-20 left-50 transform-[rotateX(7deg)_rotateZ(-1.5deg)]"
+              />
+              <YT
+                youtubeLink="https://youtu.be/rE7xqjO5UMI?si=52KW4WZlpfnpyove"
+                title="Startup Lessons: What I Learned Building My First Product"
+                className="absolute z-20 top-32 left-72 transform-[rotateX(0deg)_rotateZ(0deg)]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Labels({ className, text }: { className?: string; text?: string }) {
+  return (
+    <>
+      <div
+        className={`${className} h-11 w-fit p-5 rounded-[10px] flex justify-center items-center`}
+      >
+        <h1 className="text-[20px]">{text}</h1>
+      </div>
+    </>
+  );
+}
+
+function YT({
+  youtubeLink,
+  title,
+  className,
+}: {
+  youtubeLink: string;
+  title: string;
+  className?: string;
+}) {
+  // Extract video ID from YouTube link
+  const getVideoId = (url: string) => {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+    return match ? match[1] : '';
+  };
+  
+  const videoId = getVideoId(youtubeLink);
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  
+  return (
+    <>
+      <div className={`h-67.5 w-70 rounded-[10px] overflow-hidden shadow-lg ${className}`}>
+        <Image
+          src={thumbnailUrl}
+          alt={title}
+          width={280}
+          height={192}
+          className="h-48 w-full object-cover"
+        />
+        <div className="h-19.5 bg-white px-3 py-2 flex items-center">
+          <h1 className="text-[14px] font-medium text-gray-800 line-clamp-2">
+            {title}
+          </h1>
         </div>
       </div>
     </>
