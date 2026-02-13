@@ -5,6 +5,7 @@ import Hero from "@/components/ui/sections/Hero";
 import Benchmark from "@/components/ui/sections/Benchmark";
 import FAQ from "@/components/ui/sections/FAQ";
 import Footer from "@/components/ui/sections/Footer";
+import Footer2 from "@/components/ui/sections/Footer2";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Benchmark />
       <FAQ/>
       <Footer />
+      <Footer2 />
     </>
   );
 }

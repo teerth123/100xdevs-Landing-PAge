@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { Button } from "../button";
 
 export default function Footer() {
@@ -20,15 +21,25 @@ export default function Footer() {
     { name: "Kunal", color: "#14B8A6" },
   ];
 
-  // Use 80% of the smaller viewport dimension for radius
-  const getRadius = () => {
-    if (typeof window !== 'undefined') {
-      return Math.min(window.innerWidth, window.innerHeight) * 0.4; // 0.4 = 80% / 2 (radius is half diameter)
-    }
-    return 400; // fallback
-  };
+  const [radius, setRadius] = useState(400); // Default fallback value
 
-  const radius = getRadius();
+  useEffect(() => {
+    // Calculate radius only on client side after hydration
+    const calculateRadius = () => {
+      return Math.min(window.innerWidth, window.innerHeight) * 0.4; // 0.4 = 80% / 2 (radius is half diameter)
+    };
+    
+    setRadius(calculateRadius());
+
+    // Recalculate on window resize
+    const handleResize = () => {
+      setRadius(calculateRadius());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const pointerDistance = radius - 80; // Pointers very close to names (80px gap)
   const centerX = 0;
   const centerY = 0;
@@ -107,6 +118,7 @@ export default function Footer() {
           })}
         </div>
       </div>
+      <hr />
     </>
   );
 }
