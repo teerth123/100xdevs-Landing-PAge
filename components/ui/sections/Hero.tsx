@@ -16,7 +16,7 @@ export default function Hero() {
           aria-hidden="true"
         ></div>
 
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-16 w-162.5 h-[340px] z-30 pointer-events-none max-w-[90vw]">
+        <div className="mt-5 absolute left-1/2 -translate-x-1/2 bottom-16 w-162.5 h-[340px] z-30 pointer-events-none max-w-[90vw] max-[1600px]:mt-5 min-[1680px]:w-[800px] min-[1680px]:h-[420px]">
           <div
             className="w-full h-full bg-white rounded-4xl border border-[#D9D9D9] flex justify-center items-center relative overflow-hidden "
             aria-hidden="true"
@@ -42,7 +42,7 @@ export default function Hero() {
 
         {/* Left Book - Web3 Bootcamp - smaller and tilted, behind main book */}
         <div
-          className="absolute left-[30%] bottom-36 z-35 pointer-events-auto max-w-[300px]"
+          className="absolute left-[30%] bottom-36 z-35 pointer-events-auto max-w-[300px] min-[1680px]:max-w-[380px] min-[1680px]:scale-110"
           style={{ transform: "scale(0.7) rotate(-8deg)" }}
         >
           <Book title="Web3 Bootcamp" />
@@ -50,13 +50,13 @@ export default function Hero() {
 
         {/* Right Book - AI and ML Bootcamp - smaller and tilted, behind main book */}
         <div
-          className="absolute right-[30%] bottom-36 z-35 pointer-events-auto max-w-[300px]"
+          className="absolute right-[30%] bottom-36 z-35 pointer-events-auto max-w-[300px] min-[1680px]:max-w-[380px] min-[1680px]:scale-110"
           style={{ transform: "scale(0.7) rotate(8deg)" }}
         >
           <Book title="AI and ML Bootcamp" />
         </div>
 
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-50 w-[650px] max-w-[90vw] h-[320px] z-40 pointer-events-auto flex items-center justify-center">
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-50 w-[650px] max-w-[90vw] h-[320px] z-40 pointer-events-auto flex items-center justify-center min-[1680px]:w-[800px] min-[1680px]:h-[400px] min-[1680px]:scale-110">
           <Book title="100xSchool Combined<br />Bootcamp" />
         </div>
 

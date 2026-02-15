@@ -154,8 +154,28 @@ export default function Benchmark() {
                 Cohort 3 being selected for GSoC.
               </h1>
             </div>
-            <div className="border border-[#D9D9D9] flex flex-col justify-center items-center w-full h-full rounded-[10px] p-4"></div>
-            <div className="border border-[#D9D9D9] flex flex-col justify-center items-center w-full h-full rounded-[10px]"></div>
+            <div className="border border-[#D9D9D9] flex flex-col justify-center items-center w-full h-full rounded-[10px] p-4">
+              <Image
+                src="/dollar.png"
+                alt="Dollar"
+                width={300}
+                height={300}
+              />
+              <h1 className="font-medium text-[24px] text-[#4E4E4E] mt-auto">
+                <span className="text-[#00B0FF]">$150K</span> highest international package being offered
+              </h1>
+            </div>
+            <div className="border border-[#D9D9D9] flex flex-col justify-center items-center w-full h-full rounded-[10px] p-4">
+              <Image
+                src="/erasebg-transformed.png"
+                alt="Last"
+                width={400}
+                height={400}
+              />
+              <h1 className="font-medium text-[24px] text-[#4E4E4E] mt-auto">
+                <span className="text-[#00B0FF]">200+</span> high-paying internships being confirmed
+              </h1>
+            </div>
           </div>
           
           
