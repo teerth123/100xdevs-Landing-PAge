@@ -1,5 +1,6 @@
 "use client";
 
+import {motion} from "motion/react"
 import Book from "@/components/ui/Book";
 import { Button } from "../button";
 
@@ -41,7 +42,7 @@ export default function Hero() {
         </div>
 
         {/* Left Book - Web3 Bootcamp - smaller and tilted, behind main book */}
-        <div
+        <motion.div
           className="absolute left-[30%] bottom-36 z-35 pointer-events-auto max-w-[300px]
           min-[1550px]:scale-[0.75]
           min-[1680px]:max-w-[350px] min-[1680px]:scale-[0.8]
@@ -49,13 +50,15 @@ export default function Hero() {
           max-[1441px]:scale-[0.75] max-[1441px]:bottom-26 max-[1441px]:left-[29%]
           max-[1366px]:scale-[0.5] max-[1366px]:left-[27%] max-[1366px]:bottom-16
           max-[1280px]:scale-[0.55] max-[1280px]:left-[28%] max-[1280px]:bottom-22"
-          style={{ transform: "scale(0.9) rotate(-8deg)" }}
+          initial={{  scale: 0.7, rotate: 0, y: 8 }}
+          animate={{  scale: 0.9, rotate: -8, y: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <Book title="Web3 Bootcamp" />
-        </div>
+        </motion.div>
 
         {/* Right Book - AI and ML Bootcamp - smaller and tilted, behind main book */}
-        <div
+        <motion.div
           className="absolute right-[30%] bottom-36 z-35 pointer-events-auto max-w-[300px]
           min-[1550px]:scale-[0.75]
           min-[1680px]:max-w-[350px] min-[1680px]:scale-[0.8]
@@ -63,12 +66,14 @@ export default function Hero() {
           max-[1441px]:scale-[0.75] max-[1441px]:bottom-26 max-[1441px]:right-[29%]
           max-[1366px]:scale-[0.5] max-[1366px]:right-[27%] max-[1366px]:bottom-16
           max-[1280px]:scale-[0.55] max-[1280px]:right-[28%] max-[1280px]:bottom-22"
-          style={{ transform: "scale(0.9) rotate(8deg)" }}
+          initial={{ scale: 0.7, rotate: 0, y: 8 }}
+          animate={{ scale: 0.9, rotate: 8, y: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut", delay: 0.08 }}
         >
           <Book title="AI and ML Bootcamp" />
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
           className="absolute left-1/2 -translate-x-1/2 bottom-50 w-[650px] max-w-[90vw] h-[320px] z-40 pointer-events-auto flex items-center justify-center
           min-[1550px]:scale-90 min-[1550px]:bottom-46
           min-[1680px]:w-[750px] min-[1680px]:h-[380px] min-[1680px]:scale-100 min-[1680px]:bottom-50
@@ -76,13 +81,34 @@ export default function Hero() {
           max-[1441px]:scale-[0.75] max-[1441px]:bottom-38
           max-[1366px]:scale-[0.62] max-[1366px]:bottom-22
           max-[1280px]:scale-[0.6] max-[1280px]:bottom-28"
+          initial={{ scale: 0.82, y: 10 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut", delay: 0.16 }}
         >
           <Book title="100xSchool Combined<br />Bootcamp" />
-        </div>
+        </motion.div>
 
         <div className="w-full max-w-7xl flex flex-col items-center gap-y-7 min-[1550px]:gap-y-9 max-[1440px]:gap-y-5 max-[1366px]:gap-y-4 max-[1280px]:gap-y-3">
           <div className="flex items-center pt-7 min-[1550px]:pt-9 max-[1440px]:pt-5 max-[1366px]:pt-4 max-[1280px]:pt-3">
-            <div className="w-[22px] h-[22px] rounded-full bg-[#41C16B] shadow-[0_0_12px_4px_rgba(65,193,107,0.6)] max-[1440px]:w-[18px] max-[1440px]:h-[18px]"></div>
+            <div className="relative w-[22px] h-[22px] max-[1440px]:w-[18px] max-[1440px]:h-[18px]">
+              <motion.div
+                className="absolute inset-0 rounded-full bg-[#41C16B]"
+                style={{ filter: "blur(8px)" }}
+                animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
+                transition={{ duration: 2.2, repeat: Infinity, repeatType: "loop", ease: "easeOut" }}
+              />
+              <motion.div
+                className="absolute inset-0 rounded-full bg-[#41C16B]"
+                style={{ filter: "blur(12px)" }}
+                animate={{ scale: [1, 2.2], opacity: [0.35, 0] }}
+                transition={{ duration: 2.8, repeat: Infinity, repeatType: "loop", ease: "easeOut", delay: 0.6 }}
+              />
+              <motion.div
+                className="w-[22px] h-[22px] rounded-full bg-[#41C16B] shadow-[0_0_12px_4px_rgba(65,193,107,0.6)] max-[1440px]:w-[18px] max-[1440px]:h-[18px]"
+                animate={{ scale: [1, 1.06, 1] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              ></motion.div>
+            </div>
             <p className="text-[20px] px-2 max-[1440px]:text-[18px] max-[1366px]:text-[16px] max-[1280px]:text-[15px]">
               Early Bird ending in 48 hours!!!
             </p>

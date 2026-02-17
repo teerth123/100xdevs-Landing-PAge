@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { Button } from "../button";
 
 export default function Footer() {
@@ -22,6 +23,33 @@ export default function Footer() {
   ];
 
   const [radius, setRadius] = useState(400); // Default fallback value
+  const rawAngle = useMotionValue(0);
+  const smoothAngle = useSpring(rawAngle, { stiffness: 120, damping: 20, mass: 0.8 });
+  const pointerRotation = useTransform(smoothAngle, (v) => v + 90);
+  const lastPos = useRef<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      if (!lastPos.current) {
+        lastPos.current = { x: e.clientX, y: e.clientY };
+        return;
+      }
+
+      const dx = e.clientX - lastPos.current.x;
+      const dy = e.clientY - lastPos.current.y;
+
+      // Avoid noisy zero-length vectors
+      if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+        const angleRad = Math.atan2(dy, dx);
+        const angleDeg = (angleRad * 180) / Math.PI;
+        rawAngle.set(angleDeg);
+        lastPos.current = { x: e.clientX, y: e.clientY };
+      }
+    };
+
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, []);
 
   useEffect(() => {
     // Calculate radius only on client side after hydration
@@ -66,9 +94,6 @@ export default function Footer() {
             const pointerX = centerX + pointerDistance * Math.cos(angle);
             const pointerY = centerY + pointerDistance * Math.sin(angle);
             
-            // Calculate rotation angle for the pointer to point toward center
-            const pointerRotation = (angle * 180) / Math.PI + 90;
-
             return (
               <div key={index}>
                 {/* Name box on the arc */}
@@ -89,12 +114,14 @@ export default function Footer() {
                 </div>
 
                 {/* Pointer inside the circle */}
-                <div
+                <motion.div
                   className="absolute"
                   style={{
                     left: `calc(50% + ${pointerX}px)`,
                     top: `calc(50% + ${pointerY}px)`,
-                    transform: `translate(-50%, -50%) rotate(${pointerRotation}deg)`,
+                    translateX: "-50%",
+                    translateY: "-50%",
+                    rotate: pointerRotation,
                   }}
                 >
                   <svg
@@ -112,7 +139,7 @@ export default function Footer() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </div>
+                </motion.div>
               </div>
             );
           })}
